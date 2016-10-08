@@ -39,6 +39,7 @@ body, html {
   padding: 0;
 }
 
+
 /* Parallax base styles
 --------------------------------------------- */
 
@@ -129,15 +130,19 @@ body, html {
 
     .parallax-layer-base {
       background-image: url("code.png");
-      background-size: contain;
+      background-size: cover;
     }
   }
 
   .group2 {
     z-index: 3; /* slide under groups 1 and 3 */
 
+    .parallax-layer-base {
+      box-shadow: 0 0 0 5px black;
+    }
     .parallax-layer-back {
-      background: rgb(123, 210, 102);
+      background-color: black;
+
     }
   }
 
@@ -154,25 +159,36 @@ body, html {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: radial-gradient(rgba(255, 100, 55, 0.8) 15%, transparent 26%), radial-gradient(rgba(255, 255, 255, 0.8) 15%, transparent 26%);
-      background-size: 150px 150px;
+      background-size: 246px 351px;
       background-position: 0 0, 200px 200px;
-      transform: scaleX(1) scaleY(1);
+      transform: scaleX(1.4) scaleY(1.3);
       transform-origin: left center;
-      @include animation(disco 3.5s infinite linear);
+      @include animation(disco 5s infinite linear);
     }
     .parallax-layer-base {
 
     }
+
   }
 }
 
 @include keyframes(disco) {
-  from {
+  0% {
     background-position: 0 0, 200px 200px;
+    background-image: radial-gradient(rgba(255, 100, 55, 0.8) 15%, transparent 26%), radial-gradient(rgba(255, 255, 255, 0.8) 15%, transparent 26%);
   }
-  to {
+  25% {
+    background-image: radial-gradient(rgba(#ff00ac, 0.8) 15%, transparent 26%), radial-gradient(rgba(#ffffa1, 0.8) 15%, transparent 26%);
+  }
+  50% {
+    background-image: radial-gradient(rgba(#00ffbf, 0.8) 15%, transparent 26%), radial-gradient(rgba(#fff200, 0.8) 15%, transparent 26%);
+  }
+  75% {
+    background-image: radial-gradient(rgba(#06ff00, 0.8) 15%, transparent 26%), radial-gradient(rgba(#2600ff, 0.8) 15%, transparent 26%);
+  }
+  100% {
     background-position: 400px 0, 300px 200px;
+    background-image: radial-gradient(rgba(55, 250, 55, 0.8) 15%, transparent 26%), radial-gradient(rgba(0, 255, 255, 0.8) 15%, transparent 26%);
   }
 }
 
