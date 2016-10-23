@@ -7,56 +7,28 @@
 </head>
 
 <body>
-
-<div class="debug">
-	<label><input type="checkbox">Debug</label>
-</div>
-
-<div class="parallax">
-	<div class="parallax-group group1">
-		<div class="parallax-layer parallax-layer-base">
-			<div class="content">
-				<div class="img-wrapper"><img src="avatar.jpeg" class="avatar"/></div>
-				<div class="text">
-					<h2 class="title">Coding at day time...</h2>
-					<p>
-						Full Stack developer, open-source enthusiastic, web-performance freak
-						and a code magician!
-					</p>
-				</div>
-			</div>
+<div class="main-content">
+	<div class="section at-day">
+		<div class="img-wrapper"><img src="avatar.jpeg" class="avatar"/></div>
+		<div class="text">
+			<h2 class="title">Coding at day time...</h2>
+			<p>
+				Full Stack developer, open-source enthusiastic, web-performance freak
+				and a code magician!
+			</p>
 		</div>
 	</div>
-	<div class="parallax-group group2">
-		<div class="parallax-layer parallax-layer-base">
-			<div class="content">Base Layer</div>
-		</div>
-		<div class="parallax-layer parallax-layer-back">
-			<div class="content">Background Layer</div>
-		</div>
-	</div>
-	<div class="parallax-group group3">
-		<div class="parallax-layer parallax-layer-base">
-			<div class="content">
-				<img src="dj.jpg" class="avatar"/>
-				<div class="text">
-					<h2 class="title">Mixing at night...</h2>
-					<p>
-						Mixing sounds from Dark 80's, New Beat and Retro to Progressive House, Techno and Trance music
-					</p>
-				</div>
-			</div>
+	<div class="section at-night">
+		<div class="img-wrapper"><img src="dj.jpg" class="avatar"/></div>
+		<div class="text">
+			<h2 class="title">Mixing at night...</h2>
+			<p>
+				Mixing sounds from Dark 80's, New Beat and Retro to Progressive House, Techno and Trance music
+			</p>
 		</div>
 	</div>
 </div>
-
-<script>
-	var debugInput = document.querySelector("input");
-	function updateDebugState() {
-		document.body.classList.toggle('debug-on', debugInput.checked);
-	}
-	debugInput.addEventListener("click", updateDebugState);
-	updateDebugState();
-</script>
+<script src="http://brokensquare.com/Code/Canvallax.js/dist/Canvallax.js"></script>
+<script src=main.js></script>
 </body>
 </html>

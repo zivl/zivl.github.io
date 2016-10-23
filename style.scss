@@ -1,217 +1,88 @@
-@mixin animation($animate...) {
-  $max: length($animate);
-  $animations: '';
 
-  @for $i from 1 through $max {
-    $animations: #{$animations + nth($animate, $i)};
 
-    @if $i < $max {
-      $animations: #{$animations + ", "};
-    }
-  }
-  -webkit-animation: $animations;
-  -moz-animation: $animations;
-  -o-animation: $animations;
-  animation: $animations;
-}
+$dayColor: #E1F6F4;
+$nightColor: #002560;
 
-@mixin keyframes($animationName) {
-  @-webkit-keyframes #{$animationName} {
-    @content;
-  }
-  @-moz-keyframes #{$animationName} {
-    @content;
-  }
-  @-o-keyframes #{$animationName} {
-    @content;
-  }
-  @keyframes #{$animationName} {
-    @content;
-  }
-}
-
-body, html {
-  overflow: hidden;
-}
 
 * {
   margin: 0;
   padding: 0;
 }
 
+canvas { display: block; margin: 2em; }
 
-/* Parallax base styles
---------------------------------------------- */
-
-.parallax {
-  height: 500px; /* fallback for older browsers */
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-perspective: 300px;
-  perspective: 300px;
-  font-size: 200%;
-  color: white;
-
-  .parallax-group {
-    position: relative;
-    height: 500px; /* fallback for older browsers */
-    height: 100vh;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
-
-    .parallax-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &.parallax-layer-base {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        z-index: 4;
-      }
-
-      &.parallax-layer-back {
-        -webkit-transform: translateZ(-300px) scale(2);
-        transform: translateZ(-300px) scale(2);
-        z-index: 3;
-      }
-
-      .content {
-        position: absolute;
-        display: flex;
-        flex: 1;
-        align-items: center;
-        width: 60%;
-        $avatar-size: 260px;
-
-        .img-wrapper {
-          position: relative;
-          &:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: $avatar-size;
-            height: $avatar-size;
-            border-radius: $avatar-size / 2;
-            box-shadow: inset 0 0 50px 1em rgba(3, 2, 23, 0.9), 0 0 30px 10px rgba(3, 2, 23, 0.9);
-            -moz-box-shadow: inset 0 0 50px 1em rgba(3, 2, 23, 0.9), 0 0 30px 10px rgba(3, 2, 23, 0.9);
-            -webkit-box-shadow: inset 0 0 50px 1em rgba(3, 2, 23, 0.9), 0 0 30px 10px rgba(3, 2, 23, 0.9);
-          }
-        }
-        .avatar {
-          height: $avatar-size;
-          width: $avatar-size;
-          border-radius: $avatar-size / 2;
-        }
-
-        .text {
-          margin-left: 30px;
-          h2 {
-            margin-bottom: 20px;
-          }
-        }
-      }
-    }
-  }
-
-  .group1 {
-    z-index: 5; /* slide over group 2 */
-
-    .parallax-layer-base {
-      background-image: url("code.png");
-      background-size: cover;
-    }
-  }
-
-  .group2 {
-    z-index: 3; /* slide under groups 1 and 3 */
-
-    .parallax-layer-base {
-      box-shadow: 0 0 0 5px black;
-    }
-    .parallax-layer-back {
-      background-color: black;
-
-    }
-  }
-
-  .group3 {
-    z-index: 4; /* slide over group 2 and 4 */
-    position: relative;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-size: 246px 351px;
-      background-position: 0 0, 200px 200px;
-      transform: scaleX(1.4) scaleY(1.3);
-      transform-origin: left center;
-      @include animation(disco 5s infinite linear);
-    }
-    .parallax-layer-base {
-
-    }
-
-  }
-}
-
-@include keyframes(disco) {
-  0% {
-    background-position: 0 0, 200px 200px;
-    background-image: radial-gradient(rgba(255, 100, 55, 0.8) 15%, transparent 26%), radial-gradient(rgba(255, 255, 255, 0.8) 15%, transparent 26%);
-  }
-  25% {
-    background-image: radial-gradient(rgba(#ff00ac, 0.8) 15%, transparent 26%), radial-gradient(rgba(#ffffa1, 0.8) 15%, transparent 26%);
-  }
-  50% {
-    background-image: radial-gradient(rgba(#00ffbf, 0.8) 15%, transparent 26%), radial-gradient(rgba(#fff200, 0.8) 15%, transparent 26%);
-  }
-  75% {
-    background-image: radial-gradient(rgba(#06ff00, 0.8) 15%, transparent 26%), radial-gradient(rgba(#2600ff, 0.8) 15%, transparent 26%);
-  }
-  100% {
-    background-position: 400px 0, 300px 200px;
-    background-image: radial-gradient(rgba(55, 250, 55, 0.8) 15%, transparent 26%), radial-gradient(rgba(0, 255, 255, 0.8) 15%, transparent 26%);
-  }
-}
-
-/* Debugger styles - used to show the effect
---------------------------------------------- */
-
-.debug {
+.bg-canvas{
   position: fixed;
   top: 0;
-  left: .5em;
-  z-index: 999;
-  background: rgba(0, 0, 0, .85);
-  color: #fff;
-  padding: .5em;
-  border-radius: 0 0 5px 5px;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
-.debug-on .parallax-group {
-  -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
-  transform: translate3d(700px, 0, -800px) rotateY(30deg);
+body {
+  background-image: linear-gradient(to bottom, lighten(#97a8c0,20%) 40%, #97a8c0 80%);
+  background-size: cover;
+  height: 250vw;
+  font-size: 200%;
 }
 
-.debug-on .parallax-layer {
-  box-shadow: 0 0 0 2px #000;
-  opacity: 0.9;
+.main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+
+  .section {
+    $day-image-shadow-color: #E1F6F4;
+    $day-image-shadow-opacity: 0.6;
+    display: flex;
+    align-items: center;
+    $avatar-size: 260px;
+    margin: 200px auto;
+    width: 85%;
+
+    .img-wrapper {
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: $avatar-size;
+        height: $avatar-size;
+        border-radius: $avatar-size / 2;
+        box-shadow: inset 0 0 50px 1em rgba($day-image-shadow-color, $day-image-shadow-opacity), 0 0 30px 10px rgba($day-image-shadow-color, $day-image-shadow-opacity);
+        -moz-box-shadow: inset 0 0 50px 1em rgba($day-image-shadow-color, $day-image-shadow-opacity), 0 0 30px 10px rgba($day-image-shadow-color, $day-image-shadow-opacity);
+        -webkit-box-shadow: inset 0 0 50px 1em rgba($day-image-shadow-color, $day-image-shadow-opacity), 0 0 30px 10px rgba($day-image-shadow-color, $day-image-shadow-opacity);
+      }
+    }
+    .avatar {
+      height: $avatar-size;
+      width: $avatar-size;
+      border-radius: $avatar-size / 2;
+    }
+
+    .text {
+      margin-left: 30px;
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+
+    &.at-night {
+      color: white;
+      .img-wrapper {
+        $night-image-shadow-color: rgba(3, 2, 23, 0.7);
+        &:before {
+          box-shadow: inset 0 0 50px 1em $night-image-shadow-color, 0 0 30px 10px $night-image-shadow-color;
+          -moz-box-shadow: inset 0 0 50px 1em $night-image-shadow-color, 0 0 30px 10px $night-image-shadow-color;
+          -webkit-box-shadow: inset 0 0 50px 1em $night-image-shadow-color, 0 0 30px 10px $night-image-shadow-color;
+        }
+      }
+    }
+  }
 }
