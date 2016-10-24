@@ -202,7 +202,8 @@ var can = Canvallax({
 			rand = randomRange(0.4, 1.2);
 			pos = getCandidate();
 			tex = randomizedCloud(cloudImg);
-
+			var cloudOpacity = rand < 0.8 ? 0.8 : rand;
+			cloudOpacity = pos[1] > height / 2 ? 0.2 : cloudOpacity;
 			cloud = Canvallax.Image({
 				image: tex,
 				width: tex.width,
@@ -212,7 +213,7 @@ var can = Canvallax({
 				zIndex: rand * 13,
 				x: pos[0],
 				y: pos[1],
-				opacity: (rand < 0.8 ? 0.8 : rand ),
+				opacity: cloudOpacity,
 				distance: rand,
 
 				maxX: width,
