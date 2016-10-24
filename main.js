@@ -1,3 +1,14 @@
+
+function randomRange(min, max) {
+	return Math.random() * (max - min) + min;
+}
+
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
 var can = Canvallax({
 	className: 'bg-canvas',
 	damping: 10
@@ -29,15 +40,7 @@ var can = Canvallax({
 
 	can.add(gradient);
 
-	function randomRange(min, max) {
-		return Math.random() * (max - min) + min;
-	}
 
-	function getRandomInt(min, max) {
-		min = Math.ceil(min);
-		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min)) + min;
-	}
 
 	var colors = ['#00FF00', '#00FFFF', '#008080', '#F39C12', '#FFFF00', '#FF0000'];
 
@@ -156,10 +159,6 @@ var can = Canvallax({
 
 	CLOUD_COUNT = Math.floor(( width * height ) / (CLOUD_WIDTH * CLOUD_HEIGHT));
 
-	function randomRange(min, max) {
-		return Math.random() * (max - min) + min;
-	}
-
 	function randomizedCloud(image) {
 
 		var canvas = document.createElement('canvas'),
@@ -196,7 +195,7 @@ var can = Canvallax({
 	cloudImg.addEventListener('load', function () {
 
 		var i = CLOUD_COUNT, //Math.ceil(CLOUD_COUNT * 0.5),
-			el, rand, pos, tex;
+			rand, pos, tex;
 
 		while (i--) {
 			rand = randomRange(0.4, 1.2);
