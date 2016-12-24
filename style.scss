@@ -51,6 +51,26 @@ canvas {
   margin: 2em;
 }
 
+.contact-icons {
+  position: fixed;
+  top: 35%;
+  z-index: 9999;
+  width: 64px;
+  right: 0;
+  a {
+    position: relative;
+    right: -32px;
+    transition: right .3s;
+    img {
+      height: 64px;
+      width: 64px;
+    }
+    &:hover {
+      right: 0;
+    }
+  }
+}
+
 .bg-canvas {
   position: fixed;
   top: 0;
